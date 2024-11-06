@@ -1,0 +1,198 @@
+.main-container {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr); 
+    grid-template-rows: repeat(6, auto); 
+    grid-template-areas:
+      "container1 container1 container1 container1 container1 container1 container2 container2 container2"
+      "container1 container1 container1 container1 container1 container1 container2 container2 container2"
+      "container1 container1 container1 container1 container1 container1 container2 container2 container2"
+      "container3 container3 container3 container4 container4 container4 container5 container5 container5"
+      "container3 container3 container3 container4 container4 container4 container5 container5 container5"
+      "container3 container3 container3 container6 container6 container6 container5 container5 container5";
+    gap: 20px;
+    padding: 20px;
+    background-color: #1b1b1b; /* Dark background */
+    color: #fff; /* White text for contrast */
+    width: 100vw;
+    height: 100vh;
+}
+  
+.container1 {
+    grid-area: container1;
+    border: 2px solid #ccc;
+    padding: 15px;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    
+    /* Flexbox to manage layout */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center elements horizontally */
+    justify-content: space-between; /* Space out the content vertically */
+    height: 100%; /* Make sure container takes full height */
+}
+
+.hero-img {
+    width: 20%; /* Adjust size */
+    border-radius: 50%;
+    position: absolute; /* Take it out of the normal flow */
+    left: 15px; /* Position it to the left of the container */
+}
+
+.hero-name {
+    font-size: 40px;
+    margin-top: 10px;
+    text-align: center; /* Center text horizontally */
+    position: relative; /* Position name relative to container */
+}
+
+.stats {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 100px;
+    position: relative; /* Keep it in normal flow */
+    bottom: 0; /* Align stats to the bottom */
+    text-align: center; /* Center text horizontally */
+}
+  .stat-title {
+    font-size: 14px;
+    color: #ff0000; /* Red for health, blue for essence */
+  }
+  
+  .health-bar,
+  .essence-bar {
+    height: 10px;
+    background-color: #555;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  
+  .container2 {
+    grid-area: container2;
+    border: 2px solid #ccc;
+    padding: 15px;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    justify-content: center;
+  }
+  
+  .titleB {
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-left: 160px;
+  }
+  
+  .json-img {
+    width: 40%;
+    height: auto;
+    margin-top: 120px;
+    margin-left: 150px;
+     
+  }
+
+
+  
+  .container3 {
+    grid-area: container3;
+    border: 2px solid #ccc;
+    padding: 15px;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+  }
+
+  .hero-name2 {
+     font-size: 18px;
+     margin-top: 10px;
+     margin-left: -10px;
+   }
+   
+   .hero-name3 {
+     font-size: 18px;
+     margin-top: 10px;
+     margin-left: -10px;
+   }
+   
+
+  
+  .hero2-img,
+  .hero3-img {
+    width: 50px; /* Small profile images */
+    border-radius: 50%;
+    margin-bottom: 5px;
+  }
+  
+  .container4 {
+    grid-area: container4;
+    border: 2px solid #ccc;
+    padding: 15px;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+  }
+  
+  .equip-img {
+    width: 100px;
+    margin-right: 10px;
+  }
+  
+  .container5 {
+    grid-area: container5;
+    border: 2px solid #ccc;
+    padding: 15px;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+    
+    /* Centering content vertically and horizontally while stacking them */
+    display: flex;
+    flex-direction: column;  /* Stack items vertically */
+    justify-content: center; /* Center items vertically within the container */
+    align-items: center;     /* Center items horizontally within the container */
+    text-align: center;      /* Optional: Center text inside the container */
+}
+  .menu-option {
+    margin: 5px 0;
+    cursor: pointer;
+  }
+  
+  .container6 {
+    grid-area: container6;
+    border: 2px solid #ccc;
+    padding: 15px;
+    background-color: #2c2c2c;
+    border-radius: 10px;
+  }
+  
+  .gold-count {
+    font-size: 16px;
+    color: #ffd700; /* Gold color */
+  }
+  
+  .container2 , .container5 {
+    
+        width: calc(100% - 50px);  /* Reduces the width slightly */
+        padding-right: 0px;        /* Optional: Adds a bit of space to the right */
+    }
+
+
+    .health-bar, .essence-bar {
+        width: 100%;
+        height: 20px;
+        border-radius: 10px;
+        background-color: #444;
+        overflow: hidden;
+        position: relative;
+      }
+      
+      .health-fill, .essence-fill {
+        height: 100%;
+        transition: width 0.3s ease-in-out;
+      }
+      
+      .health-fill {
+        background: linear-gradient(to right, #ff0000, #b30000);
+      }
+      
+      .essence-fill {
+        background: linear-gradient(to right, #00bfff, #005f7f);
+      }
+ 

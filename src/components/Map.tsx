@@ -7,11 +7,13 @@ import { mapObjects } from './mapObjects';
 import { calculateCameraOffset, TILE_SIZE, ZOOM_TILE_WIDTH, ZOOM_TILE_HEIGHT } from './camera';
 import { validTileTypes } from './constants';
 import Menu from './Menu'; // Import the Menu component
+import BattleScreen from './BattleScreen';  // Import BattleScreen component
 
 const Map: React.FC = () => {
-    const [heroPosition, setHeroPosition] = useState({ x: 59, y: 45 });
+    const [heroPosition, setHeroPosition] = useState({ x: 66, y: 42 });
     const [currentNPC, setCurrentNPC] = useState<22 | 23 | 25 | null>(null);
     const [dialogueVisible, setDialogueVisible] = useState(false);
+    const [inBattle, setInBattle] = useState(false); // Add the state to manage battle status
 
     // Map dimensions in tiles
     const mapWidthInTiles = mapData[0].length;
@@ -68,8 +70,14 @@ const Map: React.FC = () => {
         setCurrentNPC(null);
     };
 
+    // Start the battle when the player selects "Yes" on the Clock Dungeon option
+    const handleBattleStart = () => {
+        setInBattle(true);  // Set inBattle state to true
+        setDialogueVisible(false); // Close the dialogue when the battle starts
+    };
+
     function handleHeroMove(_newPosition: { x: number; y: number }): void {
-        throw new Error('Function not implemented.');
+        // Functionality for hero movement (not implemented here)
     }
 
     return (
@@ -84,51 +92,61 @@ const Map: React.FC = () => {
                 position: 'relative',
             }}
         >
-            {/* Render Visible Tiles */}
-            {mapData.slice(offsetY, offsetY + ZOOM_TILE_HEIGHT).map((row, rowIndex) =>
-                row.slice(offsetX, offsetX + ZOOM_TILE_WIDTH).map((tileType, colIndex) => (
-                    <Tile key={`${rowIndex}-${colIndex}`} type={tileType} />
-                ))
+
+            {/* Render BattleScreen when in battle */}
+            {inBattle ? (
+                <BattleScreen />
+            ) : (
+                <>
+                    {/* Render Visible Tiles */}
+                    {mapData.slice(offsetY, offsetY + ZOOM_TILE_HEIGHT).map((row, rowIndex) =>
+                        row.slice(offsetX, offsetX + ZOOM_TILE_WIDTH).map((tileType, colIndex) => (
+                            <Tile key={`${rowIndex}-${colIndex}`} type={tileType} />
+                        ))
+                    )}
+
+                    {/* Render Hero */}
+                    <Hero
+                        position={{
+                            x: heroPosition.x - offsetX,
+                            y: heroPosition.y - offsetY,
+                        }}
+                        onMove={handleHeroMove}
+                        onInteract={handleInteract}
+                    />
+
+                    {/* Render Dialogue */}
+                    {dialogueVisible && currentNPC !== null && (
+                        <Dialogue
+                            npcType={currentNPC}
+                            onClose={handleCloseDialogue}
+                            heroPosition={heroPosition}
+                            onBattleStart={handleBattleStart}  // Pass handleBattleStart to the Dialogue component
+                        />
+                    )}
+
+                    {/* Render Objects */}
+                    {mapObjects.map((object, index) => (
+                        <img
+                            key={index}
+                            src={object.src}
+                            alt="Map Object"
+                            style={{
+                                position: 'absolute',
+                                top: (object.y - offsetY) * TILE_SIZE,
+                                left: (object.x - offsetX) * TILE_SIZE,
+                                width: `${object.width}px`,
+                                height: `${object.height}px`,
+                                pointerEvents: 'none',
+                                zIndex: object.zindex,
+                            }}
+                        />
+                    ))}
+
+                    {/* Render Menu */}
+                    <Menu /> {/* Add the Menu component */}
+                </>
             )}
-
-            {/* Render Hero */}
-            <Hero
-                position={{
-                    x: heroPosition.x - offsetX,
-                    y: heroPosition.y - offsetY,
-                }}
-                onMove={handleHeroMove}
-                onInteract={handleInteract}
-            />
-
-            {/* Render Dialogue */}
-            {dialogueVisible && currentNPC !== null && (
-                <Dialogue
-                    npcType={currentNPC}
-                    onClose={handleCloseDialogue}
-                    heroPosition={heroPosition}
-                />
-            )}
-
-            {/* Render Objects */}
-            {mapObjects.map((object, index) => (
-                <img
-                    key={index}
-                    src={object.src}
-                    alt="Map Object"
-                    style={{
-                        position: 'absolute',
-                        top: (object.y - offsetY) * TILE_SIZE,
-                        left: (object.x - offsetX) * TILE_SIZE,
-                        width: `${object.width}px`,
-                        height: `${object.height}px`,
-                        pointerEvents: 'none',
-                    }}
-                />
-            ))}
-
-            {/* Render Menu */}
-            <Menu /> {/* Add the Menu component */}
         </div>
     );
 };

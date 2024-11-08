@@ -1,0 +1,140 @@
+/* BattleScreen.css */
+
+/* General Battle Screen Layout */
+.battle-container {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas:
+        "battlecontainer1 battlecontainer1 battlecontainer1 battlecontainer1 battlecontainer2 battlecontainer2 battlecontainer2 battlecontainer2 battlecontainer2"
+        "battlecontainer1 battlecontainer1 battlecontainer1 battlecontainer1 battlecontainer2 battlecontainer2 battlecontainer2 battlecontainer2 battlecontainer2"
+        "battlecontainer1 battlecontainer1 battlecontainer1 battlecontainer1 battlecontainer2 battlecontainer2 battlecontainer2 battlecontainer2 battlecontainer2"
+        "battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer4 battlecontainer4 battlecontainer4 battlecontainer4"
+        "battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer4 battlecontainer4 battlecontainer4 battlecontainer4"
+        "battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer4 battlecontainer4 battlecontainer4 battlecontainer4";
+    gap: 20px;
+    padding: 20px;
+    background-color: #1b1b1b;
+    /* Dark background */
+    color: #fff;
+    /* White text for contrast */
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Container Styles */
+.battlecontainer1 {
+    grid-area: battlecontainer1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #292929;
+    /* Placeholder background color */
+}
+
+.battlecontainer2 {
+    grid-area: battlecontainer2;
+    background-color: #292929;
+    /* Placeholder background color */
+    overflow: auto;
+    display: flex;
+    flex-direction: column-reverse;
+    /* Ensures new content is appended at the bottom */
+    scroll-behavior: smooth;
+    /* Smooth scrolling */
+}
+
+.battlecontainer3 {
+    grid-area: battlecontainer3;
+    background-color: #292929;
+    /* Placeholder background color */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.battlecontainer4 {
+    grid-area: battlecontainer4;
+    background-color: #292929;
+    /* Placeholder background color */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+button {
+    margin: 10px;
+}
+
+/* Health Bar Styles */
+.health-bar {
+    width: 100%;
+    height: 30px;
+    background-color: #444;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.hero-health,
+.enemy-health {
+    height: 100%;
+    border-radius: 10px;
+}
+
+.hero-health {
+    background-color: #e74c3c;
+    /* Hero's health bar color */
+}
+
+.enemy-health {
+    background-color: #0ee73d;
+    /* Enemy's health bar color */
+}
+
+.enemy-img {
+    width: 60%;
+    /* Adjust size */
+    position: relative;
+    /* Take it out of the normal flow */
+
+    left: 15px;
+    /* Position it to the left of the container */
+}
+
+/* Styles for the battle-options container */
+.battle-options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /* Ensures the container spans the full width of its parent */
+    justify-content: space-between;
+    /* Space between the buttons */
+    gap: 10px;
+    /* Optional: space between the buttons */
+}
+
+/* Style each button within battle-options */
+.battle-options button {
+    flex: 1;
+    /* Makes each button take equal space */
+    background-color: #333;
+    /* Customize as needed */
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    /* Rounded corners for a modern look */
+    transition: background-color 0.3s;
+}
+
+.battle-options button:hover {
+    background-color: #555;
+    /* Change on hover */
+}

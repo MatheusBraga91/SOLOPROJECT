@@ -1,5 +1,5 @@
-// src/components/Hero.tsx
-import React, { useEffect  } from 'react';
+// src/components/Hero.tsx for hero movement on the MAP
+import React, { useEffect } from 'react';
 
 interface HeroProps {
     position: { x: number; y: number };
@@ -58,6 +58,7 @@ const Hero: React.FC<HeroProps> = ({ position, onMove, onInteract }) => {
                 backgroundImage: 'url(/src/assets/characters/MapHero4.png)',
                 backgroundSize: 'cover',
                 zIndex: 10
+
             }}
         />
     );

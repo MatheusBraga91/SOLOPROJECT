@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './Tile.css';
 interface TileProps {
     type: number;
 }
@@ -32,8 +32,10 @@ const Tile: React.FC<TileProps> = ({ type }) => {
         '/src/assets/path/warriorNPC.png',//23 THIS TILE WILL BE USED TO ACTIVATE THE NPC DIALOGUE EVENT FOR THE ARMORY //10
         '/src/assets/path/grasswaterD.png',//24
         '/src/assets/path/battle1.png',//25
-
-  
+        '/src/assets/path/pathgrassRU.png',//26
+        '/src/assets/path/pathgrassRD.png',//27
+        '/src/assets/path/endpath.png',//28
+        '/src/assets/path/endpath2.png',//29
 
         '/src/assets/path/grasspathR.png',//26
         '/src/assets/path/grasspathL.png',//27
@@ -59,11 +61,14 @@ const Tile: React.FC<TileProps> = ({ type }) => {
 
     return (
         <div
+            className='tiles'
             style={{
+                position: 'relative',
                 width: '48px',   // Updated size
                 height: '48px',  // Updated size
                 backgroundImage: `url(${tileImage})`,
                 backgroundSize: 'cover',
+
             }}
         />
     );

@@ -36,6 +36,13 @@ const Tile: React.FC<TileProps> = ({ type }) => {
         '/src/assets/path/pathgrassRD.png',//27
         '/src/assets/path/endpath.png',//28
         '/src/assets/path/endpath2.png',//29
+        '/src/assets/path/earthwaterR.png',//30
+        '/src/assets/path/grassearthR.png',//31
+        '/src/assets/path/earthwaterL.png',//32
+
+
+
+
 
         '/src/assets/path/grasspathR.png',//26
         '/src/assets/path/grasspathL.png',//27

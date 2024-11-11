@@ -123,21 +123,26 @@ const Menu: React.FC = () => {
             <button className="back-button" onClick={() => setIsItemsView(false)}>Back</button>
             <h3 className="items-title">Items in Bag</h3>
             <div className="items-list">
-              {Object.keys(inventory).map((itemId) => (
-                <div key={itemId} className="item">
-                  <p>{items[itemId].name} x{inventory[itemId].quantity}</p>
-                  <button onClick={() => handleItemClick(itemId)}>Use</button>
-                </div>
-              ))}
+                {Object.keys(items).map((itemId) => {
+                if (!items[itemId].isVisible) return null; // Skip items that are not visible
+                const maxQuantity = 5; // Assume max quantity for each item
+                const currentQuantity = inventory[itemId]?.quantity || 0;
+                return (
+                  <div key={itemId} className="item">
+                    <p>{items[itemId].name} x{currentQuantity}/{maxQuantity}</p>
+                    <button onClick={() => handleItemClick(itemId)} disabled={currentQuantity === 0}>Use</button>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
       </div>
-
       <div className="container6">
         <p className="gold-count">GOLD COUNT</p>
       </div>
     </div>
+  
   );
 };
 

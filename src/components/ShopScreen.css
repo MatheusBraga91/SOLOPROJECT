@@ -1,0 +1,107 @@
+/* src/components/ShopScreen.css */
+
+.shop-container {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas:
+      "merchant-container merchant-container merchant-container merchant-container log-container log-container log-container log-container log-container"
+      "merchant-container merchant-container merchant-container merchant-container log-container log-container log-container log-container log-container"
+      "merchant-container merchant-container merchant-container merchant-container log-container log-container log-container log-container log-container"
+      "items-container items-container items-container items-container items-container items-container buttons-container buttons-container buttons-container"
+      "items-container items-container items-container items-container items-container items-container buttons-container buttons-container buttons-container"
+      "items-container items-container items-container items-container items-container items-container buttons-container buttons-container buttons-container";
+  width: 100vw;
+  height: 100vh;
+  gap: 20px;
+  padding: 20px;
+  background-color: #1b1b1b;
+  color: #ddd;
+}
+
+.merchant-container {
+  grid-area: merchant-container;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #292929;
+}
+
+.merchant-container img {
+  width: 40%;
+  height: auto;
+}
+
+.log-container {
+  grid-area: log-container;
+  background-color: #292929;
+  overflow: auto;
+  display: flex;
+  padding: 10px;
+
+  border: 2px solid #333;
+  flex-direction: column-reverse;
+  scroll-behavior: smooth;
+  /* Smooth scrolling */
+}
+
+.items-container {
+  grid-area: items-container;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  background-color: #292929;
+}
+
+.item {
+  cursor: pointer;
+  padding: 8px;
+  background-color: #292929;
+  border: 1px solid #aaa;
+  text-align: center;
+}
+
+
+.item:hover {
+  background-color: #070707;
+}
+
+
+
+.buttons-container {
+  grid-area: buttons-container;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #292929;
+  justify-content: center;
+}
+
+.talkB {
+  cursor: pointer;
+  padding: 8px;
+  background-color: #292929;
+  border: 1px solid #aaa;
+  text-align: center;
+  color: #ddd;
+}
+
+.talkB:hover{
+  background-color: #070707;
+}
+
+.backB {
+  cursor: pointer;
+  padding: 8px;
+  background-color: #292929;
+  border: 1px solid #aaa;
+  text-align: center;
+  color: #ddd;
+}
+
+
+.backB:hover{
+  background-color: #070707;
+}

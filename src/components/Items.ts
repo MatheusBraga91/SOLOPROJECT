@@ -7,7 +7,9 @@ export interface Item {
     name: string;
     description: string;
     type: 'consumable' | 'equipment';
-    effect: () => void;  // Effect function that applies to the hero
+    effect: () => void;
+    maxAmount: number;  // Maximum amount the hero can hold
+    isVisible: boolean; // Whether the item is visible in the inventory
 }
 
 export const items: Record<string, Item> = {
@@ -19,7 +21,9 @@ export const items: Record<string, Item> = {
         effect: () => {
             restoreHealth(20); // Restores 20 health to the hero
             console.log(`Used Potion! Health is now ${heroStats.health}/${heroStats.maxHealth}`);
-        }
+        },
+        maxAmount: 5,  // Maximum number of potions
+        isVisible: true, // Potions start visible
     },
     poison: {
         id: 'poison',
@@ -27,10 +31,22 @@ export const items: Record<string, Item> = {
         description: 'Removes 10 health points.',
         type: 'consumable',
         effect: () => {
-            damageHealth(10); //DEAL 10 DAMAGE TO HEALTH of hero
+            damageHealth(10);
             console.log(`Used Poison! Health is now ${heroStats.health}/${heroStats.maxHealth}`);
         },
-
+        maxAmount: 5,  // Maximum number of poisons
+        isVisible: true, // Poisons start visible
     },
-
-}
+    superpoison: {
+        id: 'superpoison',
+        name: 'Super Poison',
+        description: 'Removes 30 health points.',
+        type: 'consumable',
+        effect: () => {
+            damageHealth(30);
+            console.log(`Used Super Poison! Health is now ${heroStats.health}/${heroStats.maxHealth}`);
+        },
+        maxAmount: 3, // Example maximum amount
+        isVisible: false, // Not visible until criteria are met
+    },
+};

@@ -4,10 +4,11 @@ interface DialogueProps {
     npcType: 22 | 23 | 25;
     onClose: () => void;
     heroPosition: { x: number; y: number };
-    onBattleStart: () => void;  // New prop to trigger battle
+    onBattleStart: () => void;
+    onOpenShop: () => void;  // New prop to trigger shop screen
 }
 
-const Dialogue: React.FC<DialogueProps> = ({ npcType, onClose, onBattleStart }) => {
+const Dialogue: React.FC<DialogueProps> = ({ npcType, onClose, onBattleStart, onOpenShop }) => {
     const portraits = {
         22: '/src/assets/npcs/merchant.png',
         23: '/src/assets/npcs/warrior.png',
@@ -38,12 +39,15 @@ const Dialogue: React.FC<DialogueProps> = ({ npcType, onClose, onBattleStart }) 
     }, [index, npcType]);
 
     const handleChoice = (choice: string) => {
-        if (choice === "Yes" && npcType === 25) {
-            onBattleStart();  // Start the battle if "Yes" on NPC 25 (Clock Dungeon)
+        if (choice === "Yes") {
+            if (npcType === 22) {
+                onOpenShop(); // Open the shop if NPC 22 (Merchant)
+            } else if (npcType === 25) {
+                onBattleStart(); // Start battle if NPC 25
+            }
         }
-        onClose();  // Close the dialogue after a choice
+        onClose(); // Close the dialogue after a choice
     };
-
 
     return (
         <div className="dialogue" style={{
@@ -59,7 +63,7 @@ const Dialogue: React.FC<DialogueProps> = ({ npcType, onClose, onBattleStart }) 
             flexDirection: 'column',
             justifyContent: 'center',
             alignItems: 'center',
-            zIndex: 11,
+            zIndex: 15,
         }}>
             <img src={portraits[npcType]} alt="NPC Portrait" style={{ width: '300px', height: '300px', marginBottom: '200px' }} />
             <div style={{ fontSize: '3rem', textAlign: 'center', marginBottom: '20px' }}>
@@ -79,4 +83,3 @@ const Dialogue: React.FC<DialogueProps> = ({ npcType, onClose, onBattleStart }) 
 };
 
 export default Dialogue;
-

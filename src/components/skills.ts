@@ -1,7 +1,6 @@
 // src/skills.ts
 
 // Import necessary helpers (like heroStats, restoreHealth, etc.)
-
 import { heroStats, restoreHealth, updateEssence } from './HeroStats'; 
 
 // Interface for a Skill (keep this in the file if you want to reuse it across all skills)

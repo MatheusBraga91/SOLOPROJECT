@@ -1,11 +1,13 @@
-import { veil } from './skills';  // Import the Veil skill
+
+
+import { veil } from "./skills";
 
 export interface HeroStats {
-  enemyHealth(enemyHealth: any): unknown;
   health: number;
   maxHealth: number;
   essence: number;
   maxEssence: number;
+  isVeilActive:boolean
 }
 
 export const heroStats: HeroStats = {
@@ -13,9 +15,9 @@ export const heroStats: HeroStats = {
   maxHealth: 50, // Maximum health
   essence: 200, // Initial essence
   maxEssence: 200,
-  enemyHealth: function (): unknown {
-    throw new Error('Function not implemented.');
-  }
+  isVeilActive: false,
+ 
+  
 };
 
 // Flag to track if Veil skill is active
@@ -42,7 +44,6 @@ export function deactivateVeil() {
   isVeilActive = false;
   console.log("Veil deactivated: No more damage reduction");
 }
-
 // Function to apply damage to the hero's health with potential Veil effect
 export function heroTakesDamage(incomingDamage: number) {
   let finalDamage = incomingDamage;
@@ -69,5 +70,6 @@ export function damageHealth(amount: number) {
 export function restoreEssence(amount: number) {
   updateEssence(heroStats.essence + amount);
 }
+
 
 

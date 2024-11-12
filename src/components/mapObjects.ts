@@ -209,7 +209,8 @@ export const mapObjects = [
         y: 31.5,  // Y position in tiles on the map grid
         width: 240,  // Width of object in pixels
         height: 240,  // Height of object in pixels
-        className: 'building2'
+        className: 'building2',
+        zindex: 12
     },
     {
         src: '/src/assets/objects/building2.png',  // Example object path

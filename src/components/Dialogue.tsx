@@ -4,11 +4,11 @@ interface DialogueProps {
     npcType: 22 | 23 | 25;
     onClose: () => void;
     heroPosition: { x: number; y: number };
-    onBattleStart: () => void;
-    onOpenShop: () => void;  // New prop to trigger shop screen
+    onOpenShop: () => void; // New prop to trigger shop screen
+    onOpenBattle: () => void; // New prop to trigger battle screen
 }
 
-const Dialogue: React.FC<DialogueProps> = ({ npcType, onClose, onBattleStart, onOpenShop }) => {
+const Dialogue: React.FC<DialogueProps> = ({ npcType, onClose, onOpenShop, onOpenBattle }) => {
     const portraits = {
         22: '/src/assets/npcs/merchant.png',
         23: '/src/assets/npcs/warrior.png',
@@ -43,7 +43,7 @@ const Dialogue: React.FC<DialogueProps> = ({ npcType, onClose, onBattleStart, on
             if (npcType === 22) {
                 onOpenShop(); // Open the shop if NPC 22 (Merchant)
             } else if (npcType === 25) {
-                onBattleStart(); // Start battle if NPC 25
+                onOpenBattle(); // Open the battle screen if NPC 25 (Cave)
             }
         }
         onClose(); // Close the dialogue after a choice

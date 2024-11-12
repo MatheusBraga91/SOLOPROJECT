@@ -1,52 +1,41 @@
 // src/data/Items.ts
 
-import { heroStats, restoreHealth, damageHealth } from './HeroStats';
-
 export interface Item {
     id: string;
     name: string;
     description: string;
     type: 'consumable' | 'equipment';
-    effect: () => void;
-    maxAmount: number;  // Maximum amount the hero can hold
-    isVisible: boolean; // Whether the item is visible in the inventory
+    effect: () => void; // Stub effect function to be handled elsewhere
+    maxAmount: number;
+    isVisible: boolean;
 }
 
 export const items: Record<string, Item> = {
     potion: {
         id: 'potion',
         name: 'Potion',
-        description: 'Restores 20 health points.',
+        description: 'Restores 10 health points.',
         type: 'consumable',
-        effect: () => {
-            restoreHealth(20); // Restores 20 health to the hero
-            console.log(`Used Potion! Health is now ${heroStats.health}/${heroStats.maxHealth}`);
-        },
-        maxAmount: 5,  // Maximum number of potions
-        isVisible: true, // Potions start visible
+        effect: () => { /* Action handled in Redux */ },
+        maxAmount: 5,
+        isVisible: true,
     },
-    poison: {
-        id: 'poison',
-        name: 'Poison',
-        description: 'Removes 10 health points.',
+    essenceVial: {
+        id: 'essenceVial',
+        name: 'Essence Vial',
+        description: 'Restores 50 essence points.',
         type: 'consumable',
-        effect: () => {
-            damageHealth(10);
-            console.log(`Used Poison! Health is now ${heroStats.health}/${heroStats.maxHealth}`);
-        },
-        maxAmount: 5,  // Maximum number of poisons
-        isVisible: true, // Poisons start visible
+        effect: () => { /* Action handled in Redux */ },
+        maxAmount: 5,
+        isVisible: true,
     },
-    superpoison: {
-        id: 'superpoison',
+    superPoison: {
+        id: 'superPoison',
         name: 'Super Poison',
         description: 'Removes 30 health points.',
         type: 'consumable',
-        effect: () => {
-            damageHealth(30);
-            console.log(`Used Super Poison! Health is now ${heroStats.health}/${heroStats.maxHealth}`);
-        },
-        maxAmount: 3, // Example maximum amount
-        isVisible: false, // Not visible until criteria are met
+        effect: () => { /* Action handled in Redux */ },
+        maxAmount: 3,
+        isVisible: true,
     },
 };

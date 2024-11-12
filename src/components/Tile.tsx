@@ -39,28 +39,8 @@ const Tile: React.FC<TileProps> = ({ type }) => {
         '/src/assets/path/earthwaterR.png',//30
         '/src/assets/path/grassearthR.png',//31
         '/src/assets/path/earthwaterL.png',//32
+        '/src/assets/path/pathNO.png',//33
 
-
-
-
-
-        '/src/assets/path/grasspathR.png',//26
-        '/src/assets/path/grasspathL.png',//27
-        '/src/assets/path/grasspathRD.png',//28
-        '/src/assets/path/grasspathLD.png',//29
-        '/src/assets/path/grasspathRU.png',//30
-        '/src/assets/path/grasspathLU.png',//31
-        '/src/assets/path/pathwaterD.png',//32
-        '/src/assets/path/pathwaterU.png',//33
-        '/src/assets/path/borderupisland.png',//34
-        '/src/assets/path/borderupconnectisland.png',//35
-        '/src/assets/path/bordermidconnectisland.png',//36
-        '/src/assets/path/bordermiddownconnectisland.png',//37
-        '/src/assets/path/borderdownisland.png',//38
-        '/src/assets/path/borderislanddownW.png',//39
-        '/src/assets/path/borderislanddownP.png',//40
-        '/src/assets/path/borderleftpathisland.png',//41
-        '/src/assets/path/grassislandD.png',//42
 
     ];
 

@@ -1,31 +1,21 @@
 // HeroStatsRedux.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { HeroStats, heroStats } from './HeroStats';  // Import the initial state from HeroStats.ts
 
-interface HeroState {
-  health: number;
-  maxHealth: number;
-  essence: number;
-  maxEssence: number;
-  isVeilActive: boolean;
-}
+// Use heroStats as the initial state
+const initialState: HeroStats = { ...heroStats };
 
-const initialState: HeroState = {
-  health: 50,
-  maxHealth: 50,
-  essence: 200,
-  maxEssence: 200,
-  isVeilActive: false,
-};
-
-const heroSlice = createSlice({
-  name: 'hero',
+const heroStatsSlice = createSlice({
+  name: 'heroStats',
   initialState,
   reducers: {
     updateHealth: (state, action: PayloadAction<number>) => {
-      state.health = Math.max(0, Math.min(action.payload, state.maxHealth));
+      const newHealth = action.payload;
+      state.health = Math.max(0, Math.min(newHealth, state.maxHealth));  // Prevent overflow
     },
     updateEssence: (state, action: PayloadAction<number>) => {
-      state.essence = Math.max(0, Math.min(action.payload, state.maxEssence));
+      const newEssence = action.payload;
+      state.essence = Math.max(0, Math.min(newEssence, state.maxEssence));  // Prevent overflow
     },
     activateVeil: (state) => {
       state.isVeilActive = true;
@@ -36,7 +26,7 @@ const heroSlice = createSlice({
     heroTakesDamage: (state, action: PayloadAction<number>) => {
       let damage = action.payload;
       if (state.isVeilActive) {
-        damage = Math.floor(damage * 0.7); // Reduces damage by 30%
+        damage = Math.floor(damage * 0.7);  // Reduces damage by 30%
       }
       state.health = Math.max(0, state.health - damage);
     },
@@ -57,6 +47,6 @@ export const {
   heroTakesDamage,
   restoreHealth,
   restoreEssence,
-} = heroSlice.actions;
+} = heroStatsSlice.actions;
 
-export default heroSlice.reducer;
+export default heroStatsSlice.reducer;

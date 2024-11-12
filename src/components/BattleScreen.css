@@ -6,62 +6,120 @@
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(6, 1fr);
     grid-template-areas:
-        "battlecontainer1 battlecontainer1 battlecontainer1 battlecontainer1 battlecontainer2 battlecontainer2 battlecontainer2 battlecontainer2 battlecontainer2"
-        "battlecontainer1 battlecontainer1 battlecontainer1 battlecontainer1 battlecontainer2 battlecontainer2 battlecontainer2 battlecontainer2 battlecontainer2"
-        "battlecontainer1 battlecontainer1 battlecontainer1 battlecontainer1 battlecontainer2 battlecontainer2 battlecontainer2 battlecontainer2 battlecontainer2"
-        "battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer4 battlecontainer4 battlecontainer4 battlecontainer4"
-        "battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer4 battlecontainer4 battlecontainer4 battlecontainer4"
-        "battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer3 battlecontainer4 battlecontainer4 battlecontainer4 battlecontainer4";
+        "container1 container1 container1 container1 container2 container2 container2 container2 container2"
+        "container1 container1 container1 container1 container2 container2 container2 container2 container2"
+        "container1 container1 container1 container1 container2 container2 container2 container2 container2"
+        "container3 container3 container3 container3 container3 container4 container4 container4 container4"
+        "container3 container3 container3 container3 container3 container4 container4 container4 container4"
+        "container3 container3 container3 container3 container3 container4 container4 container4 container4";
     gap: 20px;
     padding: 20px;
     background-color: #1b1b1b;
-    /* Dark background */
     color: #fff;
-    /* White text for contrast */
     width: 100vw;
     height: 100vh;
-}
-
+  }
+  
+  @media (max-width: 768px) {
+    .battle-container {
+      grid-template-columns: 1fr 1fr;
+      grid-template-areas:
+          "container1 container1"
+          "container2 container2"
+          "container3 container3"
+          "container4 container4";
+    }
+  }
 /* Container Styles */
-.battlecontainer1 {
-    grid-area: battlecontainer1;
+.container1 {
+    grid-area: container1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: #292929;
+    position: relative;
     /* Placeholder background color */
 }
 
-.battlecontainer2 {
-    grid-area: battlecontainer2;
+.container2 {
+    grid-area: container2;
     background-color: #292929;
-    /* Placeholder background color */
-    overflow: auto;
+    overflow-y: auto; /* Ensures vertical scrolling */
     display: flex;
     flex-direction: column-reverse;
-    /* Ensures new content is appended at the bottom */
-    scroll-behavior: smooth;
-    /* Smooth scrolling */
+    padding: 10px;
+  }
+
+ .container3 {
+  grid-area: container3;
+  background-color: #292929;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* Add some gap between the health and essence sections */
+  padding: 10px;
+}
+  
+/* Hero Health Bar */
+.hero-health-bar {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background-color: #444;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; 
+  direction: rtl;
 }
 
-.battlecontainer3 {
-    grid-area: battlecontainer3;
-    background-color: #292929;
-    /* Placeholder background color */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+
+/* Hero Essence Bar */
+.hero-essence-bar {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background-color: #444;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center; /* Vertically centers the text */
+  justify-content: flex-end; /* Horizontally centers the text */
+  direction: rtl;
 }
 
-.battlecontainer4 {
-    grid-area: battlecontainer4;
+.hero-essence {
+  height: 100%;
+  background-color: #0faceb; /* Yellow color for essence */
+  border-radius: 10px;
+  transition: width 1s ease-out; /* Smooth transition for essence change */
+}
+
+
+.hero-essence-text {
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 1; /* Ensure the text stays above the essence bar */
+  width: 100%; /* Take full width of the container */
+  text-align: center; /* Center the text horizontally */
+  line-height: 30px; /* Ensures text is vertically centered within the 30px height */
+}
+
+  .container4 {
+    grid-area: container4;
     background-color: #292929;
-    /* Placeholder background color */
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
-}
+    flex-wrap: wrap; /* Ensures buttons wrap when necessary */
+    gap: 10px; /* Add some gap between buttons */
+  }
 
 h3 {
     text-align: center;
@@ -69,8 +127,18 @@ h3 {
 
 button {
     margin: 10px;
+    padding: 10px 20px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
+button:hover {
+    background-color: #555;
+  }
 /* Health Bar Styles */
 .health-bar {
     width: 100%;
@@ -84,27 +152,71 @@ button {
 .enemy-health {
     height: 100%;
     border-radius: 10px;
+    transition: width 0.5s ease-in-out;
 }
 
 .hero-health {
-    background-color: #e74c3c;
-    /* Hero's health bar color */
+  height: 100%;
+  background-color: #e74c3c; /* Red color for health */
+  border-radius: 10px;
+  transition: width 1s ease-out; /* Smooth transition for health change */
 }
 
+.hero-health-text {
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 2; /* Ensure the text stays above the health bar */
+  width: 100%; /* Take full width of the container */
+  text-align: center; /* Center the text horizontally */
+  text-align: center;
+  line-height: 30px; /* Ensures text is vertically centered within the 30px height */
+}
+
+/* Enemy Health Bar */
+.enemy-health-bar {
+  position: absolute; /* Position it over the image */
+  bottom: 0px; /* Adjust as needed to avoid overlap with the image */
+  width: 100%;
+  height: 30px;
+  background-color: #444;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; 
+  direction: rtl;
+  position: relative;
+}
+
+/* The actual health bar (green part) */
 .enemy-health {
-    background-color: #0ee73d;
-    /* Enemy's health bar color */
+  height: 100%;
+  background-color: #0ee73d; /* Green color for health */
+  border-radius: 10px;
+  transition: width 1s ease-out; /* Smooth transition for health change */
+  position: absolute; /* Allows the health to move relative to the parent */
+  left: 0; /* Start from the left side */
 }
 
-.enemy-img {
-    width: 60%;
-    /* Adjust size */
-    position: relative;
-    /* Take it out of the normal flow */
-
-    left: 15px;
-    /* Position it to the left of the container */
+.enemy-health-text {
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  z-index: 2; /* Ensure it appears above the health bar */
+  width: 100%; /* Take full width of the container */
+  text-align: center; /* Center the text horizontally */
 }
+
+
+.enemy-image {
+    width: 90%;
+
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px; /* Optional: for rounded corners */
+  }
 
 /* Styles for the battle-options container */
 .battle-options {
@@ -137,4 +249,13 @@ button {
 .battle-options button:hover {
     background-color: #555;
     /* Change on hover */
+}
+
+.attack-button, .talk-button, .item-button, .run-button, .skill-button, .return-button {
+  padding: 10px;
+  background-color: #5a5a5a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }

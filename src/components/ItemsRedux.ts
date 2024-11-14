@@ -1,6 +1,5 @@
-// src/redux/ItemsRedux.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Item } from './Items';
+import { items, Item } from './Items';  // Import the items from Items.ts
 import { restoreHealth, restoreEssence, damageHealth } from './HeroStats'; // Import hero stat functions
 import { updateEnemyHealth, damageEnemy } from './EnemyStats1Redux'; // Import enemy stat functions
 
@@ -8,39 +7,18 @@ import { updateEnemyHealth, damageEnemy } from './EnemyStats1Redux'; // Import e
 type Target = 'hero' | 'enemy';
 
 interface ItemsState {
-  items: Record<string, Item>;
+  items: Record<string, { maxAmount: number, currentAmount: number, isVisible: boolean }>; // Track current amount
 }
 
 const initialState: ItemsState = {
-  items: {
-    potion: {
-      id: 'potion',
-      name: 'Potion',
-      description: 'Restores 5 health points to the target.',
-      type: 'consumable',
-      effect: () => {}, // Empty, because effects are dispatched through actions
-      maxAmount: 5,
-      isVisible: true,
-    },
-    essenceVial: {
-      id: 'essenceVial',
-      name: 'Essence Vial',
-      description: 'Restores 2 health points to the target.',
-      type: 'consumable',
-      effect: () => {},
-      maxAmount: 5,
-      isVisible: true,
-    },
-    superPoison: {
-      id: 'superPoison',
-      name: 'Super Poison',
-      description: 'Deals 15 damage to the target.',
-      type: 'consumable',
-      effect: () => {},
-      maxAmount: 3,
-      isVisible: true,
-    },
-  },
+  items: Object.keys(items).reduce((acc, key) => {
+    acc[key] = {
+      maxAmount: items[key].maxAmount,
+      currentAmount: items[key].currentAmount, // Initialize with current amount from Items.ts
+      isVisible: items[key].isVisible,
+    };
+    return acc;
+  }, {} as Record<string, { maxAmount: number, currentAmount: number, isVisible: boolean }>),
 };
 
 const itemsSlice = createSlice({
@@ -50,9 +28,13 @@ const itemsSlice = createSlice({
     // Action to use an item, with target ('hero' or 'enemy')
     useItem: (state, action: PayloadAction<{ itemId: string, target: Target }>) => {
       const { itemId, target } = action.payload;
-      const item = state.items[itemId];
+      const item = items[itemId];  // Get the full item details from Items.ts
+      const stateItem = state.items[itemId];  // Get the state-related data (maxAmount, currentAmount, isVisible) from Redux
 
-      if (item) {
+      if (item && stateItem && stateItem.currentAmount > 0) {
+        // Decrease current amount when using the item
+        stateItem.currentAmount -= 1;
+
         switch (itemId) {
           case 'potion':
             if (target === 'hero') {
@@ -89,26 +71,40 @@ const itemsSlice = createSlice({
         }
 
         console.log(`Used ${item.name} on ${target}, effect applied.`);
+      } else {
+        console.log(`Not enough ${item.name} to use.`);
       }
     },
 
     setItemVisibility: (state, action: PayloadAction<{ itemId: string, isVisible: boolean }>) => {
       const { itemId, isVisible } = action.payload;
-      const item = state.items[itemId];
-      if (item) {
-        item.isVisible = isVisible;
+      const stateItem = state.items[itemId];
+      if (stateItem) {
+        stateItem.isVisible = isVisible;
       }
     },
 
+    // Add an item to the inventory (increase current amount)
     addItem: (state, action: PayloadAction<Item>) => {
       const item = action.payload;
-      if (!state.items[item.id]) {
-        state.items[item.id] = item;
+      const stateItem = state.items[item.id];
+      if (stateItem) {
+        // Increase currentAmount up to maxAmount
+        if (stateItem.currentAmount < stateItem.maxAmount) {
+          stateItem.currentAmount += 1;
+        }
+      } else {
+        state.items[item.id] = { maxAmount: item.maxAmount, currentAmount: 1, isVisible: item.isVisible };
       }
     },
 
+    // Remove an item from the inventory (decrease current amount)
     removeItem: (state, action: PayloadAction<string>) => {
-      delete state.items[action.payload];
+      const itemId = action.payload;
+      const stateItem = state.items[itemId];
+      if (stateItem && stateItem.currentAmount > 0) {
+        stateItem.currentAmount -= 1;
+      }
     },
   },
 });

@@ -7,6 +7,7 @@ export interface Item {
     type: 'consumable' | 'equipment';
     effect: () => void; // Stub effect function to be handled elsewhere
     maxAmount: number;
+    currentAmount: number; // Added currentAmount
     isVisible: boolean;
 }
 
@@ -18,6 +19,7 @@ export const items: Record<string, Item> = {
         type: 'consumable',
         effect: () => { /* Action handled in Redux */ },
         maxAmount: 5,
+        currentAmount: 1,  // Initialize with 0, or adjust as needed
         isVisible: true,
     },
     essenceVial: {
@@ -27,6 +29,7 @@ export const items: Record<string, Item> = {
         type: 'consumable',
         effect: () => { /* Action handled in Redux */ },
         maxAmount: 5,
+        currentAmount: 2,  // Initialize with 0, or adjust as needed
         isVisible: true,
     },
     superPoison: {
@@ -36,6 +39,7 @@ export const items: Record<string, Item> = {
         type: 'consumable',
         effect: () => { /* Action handled in Redux */ },
         maxAmount: 3,
-        isVisible: true,
+        currentAmount: 0,  // Initialize with 0, or adjust as needed
+        isVisible: false,
     },
 };

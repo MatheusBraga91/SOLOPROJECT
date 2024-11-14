@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './Menu.css';
 import heroImage from '../assets/characters/profile1.png';
+import hero2Image from '../assets/characters/andre1.png';
+import hero3Image from '../assets/characters/rod1.png';
+import keyboard from '../assets/characters/keyboard.png';
+import sword from '../assets/characters/sword.png';
 import book from '../assets/characters/book.png';
 import { heroStats } from './HeroStats';
 import { heroBag } from './Bag';
@@ -98,18 +102,17 @@ const Menu: React.FC = () => {
       </div>
 
       <div className="container3">
-        <img src="path-to-HERO2.png" alt="Hero 2" className="hero2-img" />
-        <p className="hero-name2">hero2name</p>
-        <p className="hero2-health">hero2health</p>
-        <img src="path-to-HERO3.png" alt="Hero 3" className="hero3-img" />
-        <p className="hero-name3">hero3name</p>
-        <p className="hero3-health">hero3health</p>
+        <img src={hero2Image} alt="Hero 2" className="hero2-img" />
+        <p className="hero-name2">Andres</p>
+        <img src={hero3Image} alt="Hero 3" className="hero3-img" />
+        <p className="hero-name3">Rodrigo</p>
+    
       </div>
 
       <div className="container4">
         <h3 className="titleE">EQUIPMENT</h3>
-        <img src="path-to-EQUIP1.png" alt="Equip 1" className="equip-img" />
-        <img src="path-to-EQUIP2.png" alt="Equip 2" className="equip-img" />
+        <img src={sword} alt="Equip 1" className="equip-img" />
+        <img src={keyboard} alt="Equip 2" className="equip-img" />
       </div>
 
       <div className="container5">
@@ -138,9 +141,7 @@ const Menu: React.FC = () => {
           </div>
         )}
       </div>
-      <div className="container6">
-        <p className="gold-count">GOLD COUNT</p>
-      </div>
+  
     </div>
   
   );

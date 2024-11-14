@@ -6,16 +6,16 @@ import { heroBag } from './Bag';
 import merchantImg from '../assets/npcs/merchant.png';
 
 const merchantQuotes = [
-  "Welcome, traveler! What do you need?",
-  "A wise choice is always a full bag!",
-  "Fill up your potions, you never know what's ahead.",
-  "I see you're ready for adventure!",
-  "These vials will serve you well!",
+  
+  
+  
+ 
+ 
   "Travel safe and well-prepared, hero.",
-  "Stock up while you can, supplies are scarce.",
-  "Ah, it's always good to see a returning customer!",
-  "Take what you need, but spend wisely.",
-  "You won't find better deals anywhere else!"
+ 
+
+ 
+ 
 ];
 
 const ShopScreen: React.FC<{ onClose: () => void }> = ({ onClose }) => {

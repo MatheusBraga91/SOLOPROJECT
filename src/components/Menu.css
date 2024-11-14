@@ -8,15 +8,17 @@
     "container1 container1 container1 container1 container1 container1 container2 container2 container2"
     "container3 container3 container3 container4 container4 container4 container5 container5 container5"
     "container3 container3 container3 container4 container4 container4 container5 container5 container5"
-    "container3 container3 container3 container6 container6 container6 container5 container5 container5";
+    "container3 container3 container3 container4 container4 container4 container5 container5 container5";
   gap: 20px;
   padding: 20px;
   background-color: #000000;
   /* Dark background */
   color: #fff;
   /* White text for contrast */
-  width: 100vw;
-  height: 100vh;
+  width: 90vw;
+    height: 90vh;
+    transform: scale(0.9); /* Adjust this number to fit the container within the screen */
+    transform-origin: top; /* Ensures scaling starts from the top left */
 }
 
 .container1 {
@@ -89,25 +91,24 @@
 }
 
 .container2 {
-  grid-area: container2;
+  grid-area: container4;
   border: 2px solid #ccc;
   padding: 15px;
   background-color: #2c2c2c;
-  justify-content: center;
+  display: flex;  /* Add this line to enable Flexbox */
+  flex-wrap: wrap; /* Allows wrapping of images to the next line if necessary */
+  justify-content: center; /* Centers items horizontally */
+  align-items: center; /* Centers items vertically */
+  gap: 10px;
+  text-align: center; /* Ensures text inside .titleB is centered */
 }
 
 .titleB {
-  font-size: 30px;
-  margin-bottom: 10px;
-  margin-left: 160px;
+  width: 100%;  /* Make it take full width for better centering */
 }
 
 .json-img {
-  width: 40%;
-  height: auto;
-  margin-top: 120px;
-  margin-left: 150px;
-
+  width: 50%;  /* Adjust width as needed */
 }
 
 
@@ -117,6 +118,9 @@
   border: 2px solid #ccc;
   padding: 15px;
   background-color: #2c2c2c;
+  display: flex;          /* Align items horizontally */
+  justify-content: space-between; /* Optional: space the images apart if needed */
+  align-items: center;    /* Optional: vertically center the images */
 }
 
 .hero-name2 {
@@ -135,10 +139,10 @@
 
 .hero2-img,
 .hero3-img {
-  width: 50px;
-  /* Small profile images */
-  border-radius: 50%;
-  margin-bottom: 5px;
+  width: 25%;             /* Make each image take up half of the container width */
+  height: auto;           /* Maintain aspect ratio */
+  border-radius: 50%;     /* Keep images circular */
+  margin: 0;    
 }
 
 .container4 {
@@ -146,13 +150,16 @@
   border: 2px solid #ccc;
   padding: 15px;
   background-color: #2c2c2c;
+  display: flex;  /* Add this line to enable Flexbox */
+  flex-wrap: wrap; /* Allows wrapping of images to next line if necessary */
+  justify-content: flex-start; /* Aligns items to the left (default) */
+  gap: 10px;
 }
 
 .equip-img {
-  width: 100px;
+  width: 30%;
   margin-right: 10px;
 }
-
 .container5 {
   grid-area: container5;
   border: 2px solid #ccc;
@@ -176,19 +183,6 @@
   cursor: pointer;
 }
 
-.container6 {
-  grid-area: container6;
-  border: 2px solid #ccc;
-  padding: 15px;
-  background-color: #2c2c2c;
-
-}
-
-.gold-count {
-  font-size: 16px;
-  color: #ffd700;
-  /* Gold color */
-}
 
 .container2,
 .container5 {
@@ -222,4 +216,17 @@
 
 .essence-fill {
   background: linear-gradient(to right, #00bfff, #005f7f);
+}
+
+.menu-option {
+
+  padding: 10px;
+  background-color: #5a5a5a;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%; /* Make each button fill the entire row */
+  height: 20%;
 }

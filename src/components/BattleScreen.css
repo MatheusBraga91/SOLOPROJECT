@@ -16,8 +16,10 @@
     padding: 20px;
     background-color: #1b1b1b;
     color: #fff;
-    width: 100vw;
-    height: 100vh;
+    width: 90vw;
+    height: 90vh;
+    transform: scale(0.9); /* Adjust this number to fit the container within the screen */
+    transform-origin: top left; /* Ensures scaling starts from the top left */
   }
   
   @media (max-width: 768px) {
@@ -43,13 +45,25 @@
 }
 
 .container2 {
-    grid-area: container2;
-    background-color: #292929;
-    overflow-y: auto; /* Ensures vertical scrolling */
-    display: flex;
-    flex-direction: column-reverse;
-    padding: 10px;
-  }
+  grid-area: container2;
+  background-color: #292929;
+  overflow-y: auto;  /* Enables vertical scrolling */
+  display: flex;
+  flex-direction: column;  /* Allows natural top-to-bottom stacking */
+  justify-content: flex-end;  /* Keeps the scroll anchored to the bottom */
+  padding: 10px;
+  scroll-behavior: smooth; /* Smooth scrolling for new entries */
+}
+
+/* Hide scrollbar for WebKit browsers */
+.container2::-webkit-scrollbar {
+  display: none;
+}
+.container2 {
+  scrollbar-width: none;
+}
+
+
 
  .container3 {
   grid-area: container3;
@@ -115,7 +129,7 @@
     background-color: #292929;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap; /* Ensures buttons wrap when necessary */
     gap: 10px; /* Add some gap between buttons */
@@ -258,4 +272,18 @@ button:hover {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  box-sizing: border-box;
+  width: 100%; /* Make each button fill the entire row */
+}
+
+.skill-button{
+
+  box-sizing: border-box;
+  width: 100%; /* Make each button fill the entire row */
+}
+
+
+.log-container {
+  margin-bottom: 10px;
+  width: 100%; /* Ensures each log message occupies full width */
 }

@@ -47,7 +47,7 @@ export const loopAttack: Skill = {
     }
     return totalDamage;
   },
-  isVisible: true // Initially set to false, to be unlocked later
+  isVisible: false // Initially set to false, to be unlocked later
 };
 
 export const swordAttack: Skill = {
@@ -83,7 +83,7 @@ export const debugSkill: Skill = {
     console.log(`Debug skill healed for: ${healAmount} HP`);
     return healAmount;
   },
-  isVisible: true // Initially set to false
+  isVisible: false // Initially set to false
 };
 
 export const veil: Skill = {
@@ -99,7 +99,7 @@ export const veil: Skill = {
     console.log(`You used Veil, reducing incoming damage by 30%`)
     return incomingDamage * 0.7;
   },
-  isVisible: true // Initially set to false
+  isVisible: false // Initially set to false
 };
 
 export const ultimateSkill: Skill = {
